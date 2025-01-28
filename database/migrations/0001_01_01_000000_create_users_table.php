@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger("userable_id");
-            $table->enum("userable_type", ["candidate", "employer"]);
+            $table->string("userable_type");
             $table->rememberToken();
             $table->timestamps();
         });

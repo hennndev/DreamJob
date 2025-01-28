@@ -71,22 +71,15 @@
                 </section>
                 {{-- password confirm --}}
                 <section class="flex flex-col space-y-1 mb-3">
-                    <label for="password_confirm" class="text-[#222]">Password Confirm</label>
+                    <label for="password_confirmation" class="text-[#222]">Password Confirm</label>
                     <input 
                         type="password" 
-                        id="password_confirm" 
-                        name="password_confirm" 
+                        id="password_confirmation" 
+                        name="password_confirmation" 
                         placeholder="Place your password confirm here..." 
                         class="border border-gray-200 rounded-lg py-2 px-4 text-[#222] outline-none focus:ring-2 focus:ring-blue-500">
-                    @error('password_confirm')
-                        <p class="text-red-500 text-sm">{{ $message }}</p>
-                    @enderror
                 </section>
-                <section class="flexx space-x-2 mt-1">
-                    <input type="checkbox" id="keep-me-logged-in" name="keep-me-logged-in" class="w-4 h-4">
-                    <label for="keep-me-logged-in" class="text-[#222] text-sm">Keep me logged in</label>
-                </section>
-                <button class="mt-5 w-full bg-[#222] rounded-md py-2 px-4 text-white hover:opacity-90">Register</button>
+                <button type="submit" class="mt-5 w-full bg-[#222] rounded-md py-2 px-4 text-white hover:opacity-90">Register</button>
                 <p class="text-center mt-2 text-sm text-gray-500">Already have an account? <a href="/login" class="text-blue-500 hover:underline">Login</a></p>
             </form>
         </section>

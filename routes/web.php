@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\JobListingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,3 +21,17 @@ Route::controller(AuthController::class)->group(function() {
     Route::post("employer/register", "employer_store")->name("auth.employer_store")->middleware(["guest"]);
     Route::post("logout", "logout")->name("auth.logout")->middleware(["auth"]);
 });
+
+Route::prefix("employer")->group(function() {
+    Route::get("dashboard", function() {
+        return view("employer.dashboard.index", [
+            "title" => "Dashboard"
+        ]);
+    })->name("employer.dashboard");
+    Route::controller(JobListingsController::class)->group(function() {
+        Route::get("job-listings", "index")->name("employer.job_listings");
+        Route::get("job-listings/post-job", "add")->name("employer.job_listings.add");
+        Route::post("job-listings", "store")->name("employer.job_listings.store");
+        Route::get("job-listings/edit-job/{id}", "edit")->name("employer.job_listings.edit");
+    });
+}); 

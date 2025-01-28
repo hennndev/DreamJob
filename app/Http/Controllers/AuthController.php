@@ -81,7 +81,7 @@ class AuthController extends Controller
                 "email" => $validated_data["email"],
                 "password" => Hash::make($validated_data["password"]),
                 "userable_id" => $new_candidate->id,
-                "userable_type" => "candidate"
+                "userable_type" => Candidate::class
             ]);
             DB::commit();
             return back()->with("success", "Success create new candidate account. You can login now.");
@@ -96,27 +96,28 @@ class AuthController extends Controller
     public function employer_store(Request $request) {
         $validated_data = $request->validate(([
             "name" => "required|string",
-            "email" => "required|string|email:dns",
+            "company_email" => "required|string|email:dns",
             "password" => "required|string|min:7|confirmed"
         ]));
-
+        
         try {
             DB::beginTransaction();
-            $employer = Employer::create();
+            $new_employer = Employer::create();
 
             User::create([
                 "name" => $validated_data["name"],
-                "email" => $validated_data["email"],
+                "email" => $validated_data["company_email"],
                 "password" => Hash::make($validated_data['password']),
-                "userable_id" => $employer->id,
-                "userable_type" => "employer"
+                "userable_id" => $new_employer->id,
+                "userable_type" => Employer::class
             ]);
             DB::commit();
+            return back()->with("success", "Success create new employer account. You can login now.");
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withErrors([
                 "error" => "Register failed. Please try again."
-            ]);
+            ])->withInput($request->only(["name", "email"]));
         }
     }
 
