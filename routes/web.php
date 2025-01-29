@@ -3,15 +3,18 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobListingsController;
+use App\Http\Middleware\EmployerAuth;
+use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $job_listings = JobListing::all();
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "data" => $job_listings
     ]);
 })->name("home");
 
-// auth
 Route::controller(AuthController::class)->group(function() {
     Route::get("/login", "login")->name("login")->middleware(["guest"]);
     Route::get("/register", "register")->name("register")->middleware(["guest"]);
@@ -22,7 +25,7 @@ Route::controller(AuthController::class)->group(function() {
     Route::post("logout", "logout")->name("auth.logout")->middleware(["auth"]);
 });
 
-Route::prefix("employer")->group(function() {
+Route::prefix("employer")->middleware(EmployerAuth::class)->group(function() {
     Route::get("dashboard", function() {
         return view("employer.dashboard.index", [
             "title" => "Dashboard"
@@ -33,5 +36,7 @@ Route::prefix("employer")->group(function() {
         Route::get("job-listings/post-job", "add")->name("employer.job_listings.add");
         Route::post("job-listings", "store")->name("employer.job_listings.store");
         Route::get("job-listings/edit-job/{id}", "edit")->name("employer.job_listings.edit");
+        Route::put("job-listings/{id}", "update")->name("employer.job_listings.update");
+        Route::delete("job-listings/{id}", "destroy")->name("employer.job_listings.destroy");
     });
 }); 

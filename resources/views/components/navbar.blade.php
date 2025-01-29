@@ -11,10 +11,11 @@
 
             <section class="flexx text-[#222] space-x-4">
                 @auth
-                    <form action="{{ route("auth.logout") }}" method="POST">
-                        @csrf
-                        <button type="submit" class="border-none outline-none text-red-500 font-semibold">Logout</button>
-                    </form>
+                   @if (Auth::user()->userable_type === "App\Models\Employer")
+                       <x-employer-profile-dropdown></x-employer-profile-dropdown>
+                   @else
+                       <x-profile-dropdown></x-profile-dropdown>
+                   @endif
                 @endauth
                 @guest
                     <a href="/login" class="hover:text-black hover:underline">Login</a>

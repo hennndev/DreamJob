@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class JobListingsController extends Controller
 {
     public function index() {
+        $user = Auth::user();
+        $job_listings = JobListing::where("employer_id", $user->userable->id)->get()->sortByDesc("createdAt");
         return view("employer.job_listings.index", [
-            "title" => "Job Listings"
+            "title" => "Job Listings",
+            "data" => $job_listings
         ]);
     }
 
@@ -21,13 +24,14 @@ class JobListingsController extends Controller
     }
 
     public function edit($id) {
+        $job = JobListing::find($id);
         return view("employer.job_listings.edit", [
-            "title" => "Edit job"
+            "title" => "Edit job",
+            "data" => $job
         ]);
     }
 
     public function store(Request $request) {
-        // $job_skills = json_decode($request->input('job_skills_requirement'), true);
         $validated_data = $request->validate([
             "job_position" => "required|string|min:3",
             "job_type" => "required|string",
@@ -48,11 +52,26 @@ class JobListingsController extends Controller
         return redirect()->route("employer.job_listings");
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, $id) {
+        $validated_data = $request->validate([
+            "job_position" => "required|string|min:3",
+            "job_type" => "required|string",
+            "job_salary" => "integer|required",
+            "job_salary_type" => "required|string",
+            "job_description" => "required|string", 
+        ]);
+        JobListing::where("id", $id)->update(array_merge(
+            $validated_data,
+            ["job_skills_requirement" => $request->job_skills_requirement]
+        ));
 
+        return redirect()->route("employer.job_listings");
     }
 
     public function destroy($id) {
-
+        JobListing::where("id", $id)->delete();
+        return response()->json([
+            "message" => "Job has deleted"
+        ]);
     }
 }
