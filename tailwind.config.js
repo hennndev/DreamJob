@@ -14,6 +14,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            gridTemplateColumns: {
+                "cards": "repeat(auto-fill, minmax(300px, 1fr))"
+            }
         },
     },
     plugins: [],

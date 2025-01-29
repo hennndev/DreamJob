@@ -15,7 +15,7 @@
                         name="job_position" 
                         value="{{ $data["job_position"] }}"
                         placeholder="Place job position here..." 
-                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none">
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none">
                     @error('job_position')
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -26,7 +26,7 @@
                         id="job_type" 
                         name="job_type" 
                         value="{{ $data["job_type"] }}"
-                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none">
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none">
                         <option value="">Choose job type</option>
                         <option value="full-time" {{ $data["job_type"] === "full-time" ? "selected" : "" }}>Full time</option>
                         <option value="part-time" {{ $data["job_type"] === "part-time" ? "selected" : "" }}>Part time</option>
@@ -44,7 +44,7 @@
                         id="job_salary" 
                         name="job_salary" 
                         value="{{ $data["job_salary"] }}"
-                        placeholder="Place job salary here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none">
+                        placeholder="Place job salary here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none">
                     @error('job_salary')
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -55,7 +55,7 @@
                         id="job_salary_type" 
                         name="job_salary_type" 
                         value="{{ $data["job_salary_type"] }}"
-                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none">
+                        class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none">
                         <option value="">Choose job salary type</option>
                         <option value="fixed" {{ $data["job_salary_type"] === "fixed" ? "selected" : "" }}>Fixed</option>
                         <option value="negotiable" {{ $data["job_salary_type"] === "negotiable" ? "selected" : "" }}>Negotiable</option>
@@ -68,7 +68,7 @@
                     <label for="job_skill">Job skills requirement</label>
                     <input type="hidden" id="job_skills_requirement" name="job_skills_requirement">
                     <section class="flexx space-x-3">
-                        <input type="text" id="job_skill" name="job_skill" placeholder="Place job skills requirement here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none flex-1">
+                        <input type="text" id="job_skill" name="job_skill" placeholder="Place job skills requirement here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none flex-1">
                         <button type="button" class="bg-[#222] text-white rounded-md py-2 px-4 hover:opacity-90 skill-add-btn">Add</button>
                     </section>
                     <section id="skills_array" class="flexx flex-wrap !mt-4">
@@ -87,7 +87,7 @@
                 </section>
                 <section class="flex flex-col space-y-2 mb-5">
                     <label for="job_description">Job description</label>
-                    <textarea rows="7" cols="7" id="job_description" name="job_description" placeholder="Place job description here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-[#222] outline-none">{{ $data["job_description"] }}</textarea>
+                    <textarea rows="7" cols="7" id="job_description" name="job_description" placeholder="Place job description here..." class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-none focus:ring-blue-500 outline-none">{{ $data["job_description"] }}</textarea>
                     @error('job_description')
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror

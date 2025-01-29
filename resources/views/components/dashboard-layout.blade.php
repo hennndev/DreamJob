@@ -16,6 +16,9 @@
         <section class="flex flex-col flex-1">
             <x-dashboard-navbar>
                 <x-slot:title>{{ $title }}</x-slot:title>
+                @if (isset($is_search))
+                    <x-slot:is_search>{{ $is_search }}</x-slot:is_search>
+                @endif
             </x-dashboard-navbar>
             {{ $slot }}
         </section>

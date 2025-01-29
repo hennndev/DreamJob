@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobListingsController;
 use App\Http\Middleware\EmployerAuth;
 use App\Models\JobListing;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     $job_listings = JobListing::all();
     return view('home', [
         "title" => "Home",
