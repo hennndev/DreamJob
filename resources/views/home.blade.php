@@ -22,7 +22,7 @@
         <section class="mt-10 px-10">
             <section class="mb-7 flexx space-x-5">
                 <i class="fa-solid fa-briefcase text-gray-500 text-xl"></i>
-                <p class="text-[#222] text-lg font-semibold">Showing 50 jobs</p>
+                <p class="text-[#222] text-lg font-semibold">Showing {{ count($data) }} jobs</p>
             </section>
 
             <section class="grid grid-cols-cards gap-y-10 gap-x-5">

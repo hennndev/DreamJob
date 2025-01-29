@@ -14,7 +14,8 @@ class JobListingsController extends Controller
         $job_listings = JobListing::where("employer_id", $user->userable->id)
                                 ->where("job_position", "LIKE", "%" . $query_search . "%")
                                 ->orWhere("job_type", "LIKE", "%" . $query_search . "%")
-                                ->orWhere("job_salary", "LIKE", "%" . $query_search . "%")->get()->sortByDesc("createdAt");
+                                ->orWhere("job_salary", "LIKE", "%" . $query_search . "%")
+                                ->orderByDesc("created_at")->get();
         return view("employer.job_listings.index", [
             "title" => "Job Listings",
             "data" => $job_listings

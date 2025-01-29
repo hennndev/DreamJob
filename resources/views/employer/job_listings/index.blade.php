@@ -2,10 +2,23 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:is_search>{{ true }}</x-slot:is_search>
     <section class="px-10 pt-7">
-        <section class="flex-end">
+        <section class="flex-between">
+            <section class="flexx space-x-3">
+                <button class="flexx border border-gray-300 rounded-md outline-none py-2 px-4 hover:bg-[#222] hover:text-white">
+                    <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
+                    Sort data
+                </button>
+                <button class="flexx border border-gray-300 rounded-md outline-none py-2 px-4 hover:bg-[#222] hover:text-white">
+                    <i class="fa-solid fa-filter mr-2"></i>
+                    Filter data
+                </button>
+                <button class="flexx border border-gray-300 rounded-md outline-none py-2 px-4 hover:bg-[#222] hover:text-white">
+                    <i class="fa-solid fa-print mr-2"></i>
+                    Print report
+                </button>
+            </section>
             <a href="/employer/job-listings/post-job" class="border-none outline-none bg-[#222] text-white py-2 px-4 rounded-md hover:opacity-90">Post new job</a>
         </section>
-
 
         <div class="flex flex-col mt-10">
             <div class="-m-1.5 overflow-x-auto">
@@ -58,7 +71,9 @@
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
+
+        <x-pagination></x-pagination>
     </section>
 </x-dashboard-layout>
 

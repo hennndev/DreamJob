@@ -1,4 +1,4 @@
-<footer class="w-full pt-10 pb-5">
+<footer class="w-full pt-20 pb-5">
     <section class="max-w-[1200px] mx-auto flex-between">
         <section class="flexx space-x-10">
             <a href="/contacs" class="text-sm underline text-gray-500">Contacts</a>
