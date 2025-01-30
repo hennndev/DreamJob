@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FindJobsController;
 use App\Http\Controllers\JobListingsController;
 use App\Http\Middleware\EmployerAuth;
 use App\Models\JobListing;
@@ -40,3 +41,9 @@ Route::prefix("employer")->middleware(EmployerAuth::class)->group(function() {
         Route::delete("job-listings/{id}", "destroy")->name("employer.job_listings.destroy");
     });
 }); 
+
+
+Route::controller(FindJobsController::class)->group(function() {
+    Route::get("/find-jobs", "find_jobs")->name("find_jobs");
+    Route::get("/find-jobs/jobs/{id}", "job_detail")->name("job_detail");
+});

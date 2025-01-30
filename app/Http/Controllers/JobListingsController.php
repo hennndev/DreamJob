@@ -15,10 +15,13 @@ class JobListingsController extends Controller
                                 ->where("job_position", "LIKE", "%" . $query_search . "%")
                                 ->orWhere("job_type", "LIKE", "%" . $query_search . "%")
                                 ->orWhere("job_salary", "LIKE", "%" . $query_search . "%")
-                                ->orderByDesc("created_at")->get();
+                                ->orderByDesc("created_at");
+        $total_data = $job_listings->count();
+        $total_data_by_paginate = $job_listings->paginate(5);
         return view("employer.job_listings.index", [
             "title" => "Job Listings",
-            "data" => $job_listings
+            "data" => $total_data_by_paginate,
+            "total_data" => $total_data
         ]);
     }
 

@@ -39,7 +39,9 @@
                             <tbody>
                                 @foreach ($data as $index => $job)
                                     <tr class="odd:bg-white even:bg-gray-100">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#222]">{{ $index + 1 }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#222]">
+                                            {{ (((request()->query('page') ?? 1) - 1) * 5) + $index + 1 }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#222]">
                                             {{ $job->job_position }}
                                         </td>
@@ -73,7 +75,8 @@
             </div>
         </div>
 
-        <x-pagination></x-pagination>
+        <x-pagination total_data="{{ $total_data }}">
+        </x-pagination>
     </section>
 </x-dashboard-layout>
 
